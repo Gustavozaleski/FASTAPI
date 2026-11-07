@@ -248,15 +248,6 @@ Authorization: Bearer <refresh_token>
 | preco_unitario | Float | |
 | pedidos | Integer | Chave estrangeira para `Pedidos.id` |
 
-## Roadmap
-
-- [ ] Rotas para adicionar e remover itens de um pedido
-- [ ] Listar pedidos (todos, para admin; apenas os próprios, para usuário comum)
-- [ ] Finalizar pedido e calcular o preço total
-- [ ] Padronizar status e tamanhos com `Enum`
-- [ ] Schemas de resposta (`response_model`)
-- [ ] Testes automatizados
-- [ ] Deploy
 
 ## Licença
 
