@@ -24,4 +24,12 @@ class LoginSchema(BaseModel):
     senha: str
 
     model_config = ConfigDict(from_attributes=True)
-    
+
+class ItensSchema(BaseModel):
+    quantidade: int
+    sabor: str
+    tamanho: str
+    preco_unitario: float
+
+    model_config = ConfigDict(from_attributes=True)
+   
