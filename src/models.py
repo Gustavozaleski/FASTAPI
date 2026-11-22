@@ -1,16 +1,26 @@
-from sqlalchemy import create_engine, Column, String, Integer, Boolean, Float, ForeignKey 
+from sqlalchemy import (
+    Boolean,
+    Column,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    create_engine,
+)
 from sqlalchemy.orm import declarative_base, relationship
-#from sqlalchemy_utils.types import ChoiceType 
 
-#Criação de conexão com o banco de dados
+# from sqlalchemy_utils.types import ChoiceType
+
+# Criação de conexão com o banco de dados
 db = create_engine("sqlite:///banco.db")
 
-#Criação da base do banco de dados
+# Criação da base do banco de dados
 Base = declarative_base()
 
-#criação das classes/tabelas no banco de dados
+# criação das classes/tabelas no banco de dados
 
-#usuarios
+
+# usuarios
 class usuario(Base):
     __tablename__ = "usuarios"
 
@@ -28,7 +38,8 @@ class usuario(Base):
         self.ativo = ativo
         self.admin = admin
 
-#pedido
+
+# pedido
 class pedido(Base):
     __tablename__ = "Pedidos"
 
@@ -40,14 +51,13 @@ class pedido(Base):
     id = Column("id", Integer, primary_key=True, autoincrement=True)
     status = Column("status", String)
     usuario = Column("usuario", ForeignKey("usuarios.id"))
-    preco = Column("preco", Float , nullable=False)
-    itens = relationship("itenspedido", cascade='all, delete')
+    preco = Column("preco", Float, nullable=False)
+    itens = relationship("itenspedido", cascade="all, delete")
 
-    def __init__(self,usuario, status="Pendente", preco=0):
+    def __init__(self, usuario=str, status="Pendente", preco=0):
         self.usuario = usuario
         self.preco = preco
         self.status = status
-
 
     def calcular_preco(self):
         preco_pedido = 0
@@ -57,11 +67,8 @@ class pedido(Base):
 
         self.preco = preco_pedido
 
-        
-        
 
-
-#itenspedidos
+# itenspedidos
 class itenspedido(Base):
     __tablename__ = "Itens"
 
@@ -87,4 +94,4 @@ class itenspedido(Base):
         self.pedidos = pedidos
 
 
-#Executa a criação dos metadados do seu banco (cria o banco de dados)
+# Executa a criação dos metadados do seu banco (cria o banco de dados)

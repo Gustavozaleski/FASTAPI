@@ -1,0 +1,70 @@
+[project]
+name = "project1"
+version = "0.0.1"
+description = "project1"
+license = "MIT"
+authors = [{ name = "Gustavo Zaleski", email = "gustavozaleski440@gmail.com" }]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi==0.115.12",
+    "uvicorn==0.34.2",
+    "SQLAlchemy==2.0.40",
+    "python-dotenv==1.1.0",
+    "python-jose==3.4.0",
+    "passlib==1.7.4",
+    "bcrypt==4.3.0",
+    "python-multipart==0.0.20",
+    "psycopg[binary]>=3.3.9",
+]
+
+[project.urls]
+Repository = "https://github.com/Gustavozaleski/FASTAPI.git"
+
+[project.optional-dependencies]
+dev = ["ruff", "pyright", "pytest", "pytest-xdist"]
+
+# ============================
+# Lint e formatação (Ruff)
+# ============================
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+fix = true
+show-fixes = true
+indent-width = 4
+exclude = ["venv", ".venv", "env", ".env", "node_modules", "__pycache__"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["T201", "COM812"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+# ============================
+# Tipagem (Pyright)
+# ============================
+[tool.pyright]
+typeCheckingMode = "basic"
+pythonVersion = "3.13"
+include = ["src", "tests"]
+exclude = [
+    "**/venv",
+    "**/.venv",
+    "**/env",
+    "**/.env",
+    "**/node_modules",
+    "**/__pycache__",
+]
+venv = ".venv"
+venvPath = "."
+
+# ============================
+# Testes (Pytest)
+# ============================
+[tool.pytest.ini_options]
+addopts = "-s --color=yes --tb=short"
+pythonpath = ["src"]
+testpaths = ["tests"]

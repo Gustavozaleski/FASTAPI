@@ -1,5 +1,4 @@
 from models import usuario, db
-from models import usuario
 from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException
 from schemas import Usuarioschema
@@ -16,7 +15,7 @@ def criar_sessao():
     finally:
         session.close()
 
-def verificar_token(token: str=Depends(oauth2_schema), session = Depends(criar_sessao)):
+def verificar_token(token: str=Depends(oauth2_schema), session: Session = Depends(criar_sessao)):
     try:
         dic_info = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         id_usuario = int(dic_info.get("sub"))
