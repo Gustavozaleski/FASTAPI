@@ -44,14 +44,14 @@ COPY --from=builder --chown=python:python /python /python
 
 COPY --from=builder --chown=python:python /app /app 
 
-WORKDIR /app
 
 ENV PATH="/app/.venv/bin/:$PATH"
 
 USER python
-
-ENTRYPOINT []
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "src.main:app"]
-
-
 ENV PYTHONPATH=/app/src
+ENTRYPOINT []
+WORKDIR /app
+
+CMD ["uvicorn", "--host", "0", "--port", "8000", "src.main:app"]
+
+
